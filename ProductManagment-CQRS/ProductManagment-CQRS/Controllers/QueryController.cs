@@ -27,10 +27,10 @@ namespace ProductManagment_CQRS.Controllers
                 }
                 return Ok(new { sucess = true, message = "Retrive Product Sucessfull", data = products });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception(ex.Message);
             }
         }
         [HttpGet("GetById/{id}")]
@@ -39,16 +39,16 @@ namespace ProductManagment_CQRS.Controllers
             try
             {
                 var product = queryService.GetProductById(id);
-                if (product == null)
-                {
-                    return BadRequest(new { sucess = false, message = "Retrive Products Failed" });
-                }
+                //if (product == null)
+                //{
+                //    return BadRequest(new { sucess = false, message = "Retrive Products Failed" });
+                //}
                 return Ok(new { sucess = true, message = "Retrive Product Sucessfull", data = product });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception(ex.Message);
             }
         }
 

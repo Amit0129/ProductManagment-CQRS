@@ -19,10 +19,10 @@ namespace ProductManagment_CQRS.Services
             {
                 return dBContext.Products.ToList();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception(ex.Message);
             }
         }
 
@@ -32,15 +32,16 @@ namespace ProductManagment_CQRS.Services
             try
             {
                 ProductEntity productFromDb = new ProductEntity();
-                productFromDb=dBContext.Products.SingleOrDefault(x => x.Id == id);
-                if (productFromDb!=null)
+                productFromDb = dBContext.Products.SingleOrDefault(x => x.Id == id);
+                if (productFromDb != null)
                 {
+
                     GetProductModel product = new GetProductModel()
                     {
                         ProductId = productFromDb.ProductId,
                         ProductName = productFromDb.ProductName,
-                        Qty= productFromDb.Qty,
-                        Price= productFromDb.Price
+                        Qty = productFromDb.Qty,
+                        Price = productFromDb.Price
                     };
                     return product;
                 }
@@ -49,10 +50,10 @@ namespace ProductManagment_CQRS.Services
                     return null;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception(ex.Message);
             }
         }
     }

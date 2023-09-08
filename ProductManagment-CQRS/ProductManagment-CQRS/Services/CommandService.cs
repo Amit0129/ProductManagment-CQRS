@@ -29,10 +29,10 @@ namespace ProductManagment_CQRS.Services
                 var result = context.SaveChanges();
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception(ex.Message);
             }
         }
         public bool UpdateProduct(InsertUpdateModel newProduct,int id)
@@ -54,10 +54,10 @@ namespace ProductManagment_CQRS.Services
                 context.SaveChanges();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception(ex.Message);
             }
         }
     }

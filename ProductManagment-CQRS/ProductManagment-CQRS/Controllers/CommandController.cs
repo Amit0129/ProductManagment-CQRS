@@ -26,10 +26,10 @@ namespace ProductManagment_CQRS.Controllers
                 }
                 return BadRequest(new { sucess = false, message = "Data Added Failed" });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception(ex.Message);
             }
         }
         [HttpPut("Update/{id}")]
@@ -44,10 +44,10 @@ namespace ProductManagment_CQRS.Controllers
                 }
                 return BadRequest(new { sucess = false, message = "Data Update Failed" });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception(ex.Message);
             }
         }
     }
