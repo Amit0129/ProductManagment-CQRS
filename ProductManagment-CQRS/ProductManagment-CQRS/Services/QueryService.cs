@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace ProductManagment_CQRS.Services
 {
+    /// <summary>
+    /// Query side service class
+    /// </summary>
     public class QueryService : IQueryService
     {
         private readonly ProductDBContext dBContext;
@@ -12,7 +15,10 @@ namespace ProductManagment_CQRS.Services
         {
             this.dBContext = dBContext;
         }
-        //Get All Products
+        /// <summary>
+        /// Get all product from database
+        /// </summary>
+        /// <returns>All product info</returns>
         public IEnumerable<ProductEntity> GetAll()
         {
             try
@@ -26,7 +32,12 @@ namespace ProductManagment_CQRS.Services
             }
         }
 
-        //Get Product By Id
+        /// <summary>
+        /// Get product info by id
+        /// </summary>
+        /// <param name="id">Product Id</param>
+        /// <returns>Product info of a perticular product Id</returns>
+        /// <exception cref="Exception"></exception>
         public GetProductModel GetProductById(int id)
         {
             try

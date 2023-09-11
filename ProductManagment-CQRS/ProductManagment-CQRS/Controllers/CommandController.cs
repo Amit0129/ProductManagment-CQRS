@@ -5,6 +5,9 @@ using ProductManagment_CQRS.Model.Command;
 
 namespace ProductManagment_CQRS.Controllers
 {
+    /// <summary>
+    /// Product Command Side Controller
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class CommandController : ControllerBase
@@ -14,6 +17,11 @@ namespace ProductManagment_CQRS.Controllers
         {
               this.commandService = commandService;
         }
+        /// <summary>
+        /// Resister product Controller endpoint
+        /// </summary>
+        /// <param name="newProduct">New Product Model</param>
+        /// <returns>SMD Format</returns>
         [HttpPost]
         public IActionResult AddProduct(InsertUpdateModel newProduct)
         {
@@ -32,6 +40,12 @@ namespace ProductManagment_CQRS.Controllers
                 throw new Exception(ex.Message);
             }
         }
+        /// <summary>
+        /// Update product by id Controller endpoint
+        /// </summary>
+        /// <param name="newProduct">New Product Model</param>
+        /// <param name="id">An Exition product Id</param>
+        /// <returns>SMD Format</returns>
         [HttpPut("Update/{id}")]
         public IActionResult UpdateProduct(InsertUpdateModel newProduct, int id)
         {

@@ -4,6 +4,9 @@ using ProductManagment_CQRS.Model.Command;
 
 namespace ProductManagment_CQRS.Services
 {
+    /// <summary>
+    /// Command side service class
+    /// </summary>
     public class CommandService : ICommandService
     {
         private readonly ProductDBContext context;
@@ -11,7 +14,11 @@ namespace ProductManagment_CQRS.Services
         {
             this.context = context;
         }
-
+        /// <summary>
+        /// Adding Product Data to Table
+        /// </summary>
+        /// <param name="newProduct">Register Product Model</param>
+        /// <returns>Returns Added value </returns>
         public int AddProduct(InsertUpdateModel newProduct)
         {
             try
@@ -35,6 +42,12 @@ namespace ProductManagment_CQRS.Services
                 throw new Exception(ex.Message);
             }
         }
+        /// <summary>
+        /// Update Product
+        /// </summary>
+        /// <param name="newProduct">New Product name</param>
+        /// <param name="id">Peoduct Id</param>
+        /// <returns>Boolian If Sucess</returns>
         public bool UpdateProduct(InsertUpdateModel newProduct,int id)
         {
             try

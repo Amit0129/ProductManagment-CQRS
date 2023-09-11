@@ -6,6 +6,9 @@ using ProductManagment_CQRS.Model.Query;
 
 namespace ProductManagment_CQRS.Controllers
 {
+    /// <summary>
+    /// Product Query Side Controller
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class QueryController : ControllerBase
@@ -15,6 +18,10 @@ namespace ProductManagment_CQRS.Controllers
         {
             this.queryService = queryService;
         }
+        /// <summary>
+        /// Get All Product info Controller Endpoint
+        /// </summary>
+        /// <returns>SMD Format</returns>
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -33,16 +40,21 @@ namespace ProductManagment_CQRS.Controllers
                 throw new Exception(ex.Message);
             }
         }
+        /// <summary>
+        /// Get product by id Endpoint
+        /// </summary>
+        /// <param name="id">Product id of an exiting product</param>
+        /// <returns>SMD Format</returns>
         [HttpGet("GetById/{id}")]
         public IActionResult GetProductById(int id)
         {
             try
             {
                 var product = queryService.GetProductById(id);
-                //if (product == null)
-                //{
-                //    return BadRequest(new { sucess = false, message = "Retrive Products Failed" });
-                //}
+                if (product == null)
+                {
+                    return BadRequest(new { sucess = false, message = "Retrive Products Failed" });
+                }
                 return Ok(new { sucess = true, message = "Retrive Product Sucessfull", data = product });
             }
             catch (Exception ex)
